@@ -21,61 +21,133 @@ public class Algebra {
    		System.out.println(sqrt(36));
 		System.out.println(sqrt(263169));
    		System.out.println(sqrt(76123));
+	
 	}  
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		for (int i = 0; i < x2; i++){
-			x1++; 
-		}
-		return x1;
+		int sum = x1;
+		if (x2 >= 0) {
+			for (int i = 0; i < x2; i++) {
+				sum++;
+			}
+		} else {
+			for (int i = x2; i > 0; i--) {
+				sum--; 
+			}
+    	}
+		return sum;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		for (int i = 0; i < x2; i++){
-			x1--;
-		}
-		return x1;
+		int sum = x1;
+		if (x2 >= 0) {
+			for (int i = 0; i < x2; i++) {
+				sum--;
+			}
+		} else {
+			for (int i = x2; i > 0; i--) {
+				sum++; 
+			}
+    	}
+		return sum;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
 		int kefel = 0;
-		int positiveX1 = (x1 < 0) ? minus(0, x1) : x1;
-		int positiveX2 = (x2 < 0) ? minus(0, x2) : x2;
-		for (int i = 0; i < positiveX2; i++){
-			kefel = plus(kefel, positiveX1);
-		}
-		if((x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0)) {
-			return minus(0, kefel);
+        int positiveX1 = x1;
+        int positiveX2 = x2;
+
+        if (x1 < 0) {
+            positiveX1 = 0;
+            for (int i = 0; i > x1; i--) {
+                positiveX1++;
+            }
+        }
+
+        if (x2 < 0) {
+            positiveX2 = 0;
+            for (int i = 0; i > x2; i--) {
+                positiveX2++;
+            }
+        }
+
+        for (int i = 0; i < positiveX2; i++) {
+            kefel = plus(kefel, positiveX1); 
+        }
+
+        if ((x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0)) {
+            return minus(0, kefel); 
+        }
+
+        return kefel;
+		
 
 		}
-		return kefel;
 		
-	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		int hezka = 1;
+		for (int i = 0; i < n; i++){
+		hezka = times(hezka,x);
+		}
+		
+		return hezka;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int positiveX1 = (x1 < 0) ? minus(0, x1) : x1;
+		int positiveX2 = (x2 < 0) ? minus(0, x2) : x2;
+	    int hilok = 0;
+	
+
+		for (int i = 0; positiveX1 >= positiveX2; i++) {
+			positiveX1 = minus(positiveX1, positiveX2);
+			hilok = plus(hilok, 1);
+		}
+	
+		
+		if ((x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0)) {
+			return minus(0, hilok);
+		}
+	
+		return hilok;
+		
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}	
+	   int sheerit = x1;
+       int positiveX2 = x2;
+
+    if (x2 < 0) {
+        positiveX2 = plus(0, x2); 
+    }
+
+    while (sheerit >= positiveX2) {
+        sheerit = plus(sheerit, minus(0, positiveX2)); 
+		if (sheerit < 0) {
+			break; 
+			}
+    }
+
+    while (sheerit < 0) {
+        sheerit = plus(sheerit, positiveX2); 
+    }
+
+    return sheerit;
+	}
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		int shoresh = 0;
+		for ( int i = 0; times (i,i) <= x; i++){
+			shoresh = i;
+		}
+		return shoresh;
 	}	  	  
 }
