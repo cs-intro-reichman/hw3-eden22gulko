@@ -53,7 +53,7 @@ public class Anagram {
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
 		String lowerCase = str.toLowerCase();
-		String cleaned = lowerCase.replaceAll("[!?\\s]", "");
+		String cleaned = lowerCase.replaceAll("[!?]", "");
 		return cleaned;
 	} 
 	   
