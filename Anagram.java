@@ -61,14 +61,34 @@ public class Anagram {
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
 		char[] arrayStr = str.toCharArray();
-		String strNew = "";
-		for (int i = 0; i < str.length(); i++){
-		int randomStr = (int) (Math.random() * (arrayStr.length - i));
-		strNew += arrayStr[randomStr];
-		arrayStr[randomStr] = arrayStr[arrayStr.length - i - 1];
+		int space = 0;
 
-		}
-		return strNew;
-	}
-	}
+    for (int i = 0; i < str.length(); i++) {
+        if (arrayStr[i] == ' ') {
+            space++;
+        }
+    }
+ 
+    for (int i = arrayStr.length - 1; i > 0; i--) {
+        int randomStr = (int) (Math.random() * (i + 1));
+        char hold = arrayStr[i];
+        arrayStr[i] = arrayStr[randomStr];
+        arrayStr[randomStr] = hold;
+    }
+
+    char[] result = new char[str.length()];
+    int letter = 0;
+
+    for (int i = 0; i < str.length(); i++) {
+        if (Math.random() < (double) space / str.length() && space > 0) {
+            result[i] = ' ';
+            space--;
+        } else {
+            result[i] = arrayStr[letter++];
+        }
+    }
+
+    return new String(result);
+   }
+}
 
