@@ -80,15 +80,15 @@ public class Anagram {
     int letter = 0;
 
     for (int i = 0; i < str.length(); i++) {
-        if (Math.random() < (double) space / str.length() && space > 0) {
-            result[i] = ' ';
-            space--;
+        if (str.charAt(i) == ' ') {
+        result[i] = ' ';
+
         } else {
-            result[i] = arrayStr[letter++];
+        result[i] = arrayStr[letter++];
         }
     }
-
     return new String(result);
-   }
+}
+
 }
 
